@@ -33,13 +33,13 @@ A messy (dirty) dataset was generated to simulate real-world data issues. The da
 ```id="proj1"
 SQL-Data-Cleaning-Project/
 │
-├── 1_dataset_creation/
+├── dataset-creation/
 │   └── dataset_creation.sql
 │
-├── 2_data_cleaning/
+├── Data-Cleaning/
 │   └── data_cleaning.sql
 │
-├── 3_analysis/
+├── Analysis/
 │   └── analysis.sql
 │
 └── README.md
