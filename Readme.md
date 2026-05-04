@@ -60,8 +60,8 @@ SQL-Data-Cleaning-Project/
   * Invalid values in price (`abc`, negative values)
   * Duplicate records
 
-👉 View SQL Code:  
-📁 [Dataset Creation Script](dataset creation/dataset_creation.sql)
+👉 View SQL Code:
+📁 [Dataset Creation Script](dataset-creation/dataset_creation.sql)
 
 ---
 
