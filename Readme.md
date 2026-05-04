@@ -99,7 +99,7 @@ Performed data cleaning using SQL techniques:
   * Removed duplicate rows using `ctid` and `GROUP BY`
 
 👉 View SQL Code:  
-📁 [Data Cleaning Script](./2_data_cleaning/data_cleaning.sql)
+📁 [Data Cleaning Script](Data-Cleaning/data_cleaning.sql)
 
 ---
 
@@ -133,7 +133,7 @@ Performed exploratory data analysis using SQL queries:
 * Top customers based on spending
 
 👉 View SQL Code:  
-📁 [Data Analysis Script](./3_analysis/analysis.sql)
+📁 [Data Analysis Script](Analysis/analysis.sql)
 
 ---
 
