@@ -61,7 +61,7 @@ SQL-Data-Cleaning-Project/
   * Duplicate records
 
 👉 View SQL Code:  
-📁 [Dataset Creation Script](./1_dataset_creation/dataset_creation.sql)
+📁 [Dataset Creation Script](dataset creation/dataset_creation.sql)
 
 ---
 
