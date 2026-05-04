@@ -125,12 +125,11 @@ Performed exploratory data analysis using SQL queries:
 
 ### 📅 Time Analysis
 
-* Daily order trends
 * Monthly revenue trends
 
 ### 👤 Customer Insights
 
-* Top customers based on spending
+* Top 5 customers based on spending
 
 👉 View SQL Code:  
 📁 [Data Analysis Script](Analysis/analysis.sql)
