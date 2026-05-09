@@ -1,5 +1,4 @@
-# 📊 End-to-End SQL Data Cleaning & Sales Analytics Project
-
+# 📊 End-to-End SQL Data Pipeline: Data Creation, Cleaning & Sales Analytics
 ## 📌 Project Overview
 
 This project demonstrates an **end-to-end data cleaning and analysis workflow using SQL (PostgreSQL)**.
