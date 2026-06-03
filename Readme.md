@@ -180,7 +180,7 @@ Performed data cleaning using SQL techniques:
 
   * Removed duplicate rows using `ctid` and `GROUP BY`
 
-- **Dirty Cleaning Steps**
+- **Data Cleaning Steps**
 
 ```sql
 -- =========================================
@@ -296,7 +296,7 @@ Performed exploratory data analysis using SQL queries:
 
 * Top 5 customers based on spending
 
-- **Dirty Cleaning Steps**
+- **Data Analysis**
 
 ```sql
 -- =========================================
