@@ -300,90 +300,60 @@ Performed exploratory data analysis using SQL queries:
 
 ```sql
 -- =========================================
--- STEP 4: Create CLEAN table with correct data types
+-- STEP 8: Data Analysis
 -- =========================================
-CREATE TABLE clean_sales (
-    order_id INT,
-    customer_name TEXT,
-    city TEXT,
-    order_date DATE,
-    product TEXT,
-    quantity INT,
-    price NUMERIC
-);
+-- total number of orders
+SELECT COUNT(*) AS total_orders
+FROM clean_sales;
 
--- =========================================
--- STEP 5: Clean data while inserting
--- =========================================
-INSERT INTO clean_sales
+-- total revenue
+SELECT SUM(price) AS total_revenue
+FROM clean_sales;
+
+-- average order value
+SELECT AVG(price) AS avg_order_value
+FROM clean_sales;
+
+-- total revenue by product
+SELECT product, SUM(price) AS revenue
+FROM clean_sales
+GROUP BY product
+ORDER BY revenue DESC;
+
+-- total quantity sold per product
+SELECT product, SUM(quantity) AS total_quantity
+FROM clean_sales
+GROUP BY product
+ORDER BY total_quantity DESC;
+
+-- revenue by city
+SELECT city, SUM(price) AS revenue
+FROM clean_sales
+GROUP BY city
+ORDER BY revenue DESC;
+
+-- number of orders per city
+SELECT city, COUNT(*) AS total_orders
+FROM clean_sales
+GROUP BY city
+ORDER BY total_orders DESC;
+
+-- monthly revenue
 SELECT 
+    DATE_TRUNC('month', order_date) AS month,
+    SUM(price) AS revenue
+FROM clean_sales
+GROUP BY month
+ORDER BY month;
 
--- convert order_id from text → integer
-CAST(order_id AS INT),
-
--- replace NULL names with 'Unknown'
-COALESCE(customer_name, 'Unknown'),
-
--- remove spaces + fix casing (Karachi, Lahore)
-INITCAP(TRIM(city)),
-
--- fix date formats and convert to DATE
-CASE 
-    WHEN order_date IS NULL THEN NULL
-    
-    -- format: 10/02/2024
-    WHEN order_date LIKE '__/__/____' THEN 
-        TO_DATE(order_date, 'DD/MM/YYYY')
-    
-    -- format: 2024-01-15
-    WHEN order_date LIKE '____-__-__' THEN 
-        TO_DATE(order_date, 'YYYY-MM-DD')
-    
-    -- format: 2024/03/10
-    WHEN order_date LIKE '____/__/__' THEN 
-        TO_DATE(order_date, 'YYYY/MM/DD')
-    
-    ELSE NULL
-END,
-
--- product already clean
-product,
-
--- fix quantity (text → number)
-CASE 
-    WHEN quantity ~ '^[0-9]+$' THEN CAST(quantity AS INT) -- valid numbers
-    WHEN LOWER(quantity) = 'two' THEN 2 -- convert 'two' → 2
-    ELSE NULL -- empty or invalid → NULL
-END,
-
--- fix price (remove invalid values)
-CASE 
-    WHEN price ~ '^[0-9]+$' THEN CAST(price AS NUMERIC) -- keep valid numbers
-    ELSE NULL -- remove 'abc' and negative values
-END
-
-FROM dirty_sales;
-
--- =========================================
--- STEP 6: Remove duplicate rows
--- keep only one row per order_id
--- =========================================
-DELETE FROM clean_sales
-WHERE ctid NOT IN (
-    SELECT MIN(ctid)  -- keep first row
-    FROM clean_sales
-    GROUP BY order_id
-);
-
--- =========================================
--- STEP 7: Final clean dataset
--- =========================================
-SELECT * FROM clean_sales;
-
+-- top 5 customers by spending
+SELECT customer_name, SUM(price) AS total_spent
+FROM clean_sales
+GROUP BY customer_name
+HAVING SUM(price) is not Null
+ORDER BY total_spent DESC
+LIMIT 5;
 ```
-
-👉 View SQL Code:  
-📁 [Data Analysis Script](Analysis/analysis.sql)
 
 ---
 
